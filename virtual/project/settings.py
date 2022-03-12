@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'myapp',
 ]
 
 MIDDLEWARE = [
@@ -48,13 +49,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+import os
 
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,3 +123,23 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.0/howto/static-files/
+
+#url que o django utiliza para mostrar os arquivos staticos
+STATIC_URL = '/static/'
+
+
+#pasta onde o django vai unir os arquivos quando for exibidos em execucao
+#os.path.join = contatena os caminhos de arquivos e pastas
+#base dir eh uma variavel do arquivo, a pasta root da aplicação
+#pasta criada ao executar o collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+#
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
